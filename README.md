@@ -1,2 +1,2 @@
-# chainwatch
+# Chainwatch
 Chainwatch Project
