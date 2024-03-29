@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ChainWatch">
+  <meta name="keywords" content="blockchain, crypto">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChainWatch</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <!-- <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div> -->
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ChainWatch</h1>
+          <h2 class="title is-2 publication-title">Blockchain Network Monitoring and Analysis</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.sdsc.edu/News%20Items/PR20231114_sparkai.html">SPARK AI - BlockLAB</a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">San Diego Supercomputer Center</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://github.com/sdsc-blocklab/chainwatch"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/sdsc-blocklab/chainwatch"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/sdsc-blocklab/chainwatch"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Poster</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The objective of this project is to deploy a blockchain network on the 
+            Comet supercomputer at SDSC, with the goal of analyzing blockchain network 
+            performance and security in a series of simulated, real world scenarios. 
+            In creating a blockchain network in the HPC environment we will be able to simulate a large 
+            distributed network enabling stress testing and the collection of data relating to real-world scenarios. 
+            Our plan is to then utilize the collected data to investigate automated, proactive decision rules with 
+            the purpose of analyzing strategies to improve network security and performance.
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+            The SDSC Blockchain and HPC team has been experimenting with high performance blockchain networks in HPC environments. 
+            Specifically, the team has worked with VMware’s blockchain service and open source protocol (SBFT) to run a simulated 
+            real-world blockchain network in a contained computing environment (1). Using Dell Boomi commands we have populated this 
+            network with over 500 synthetic HPC jobs. A technical report summarizing this work has been completed, outlining the research 
+            and proposes future research topics and use cases. 
+          </p>
+          <p>
+            One prominent use case that has been theoretically explored was enhancing blockchain security through the analysis of large scale 
+            blockchain networks, simulated on HPC. Specifically, using pre-emptive, off-chain information such as, 
+            network monitoring and analysis to proactively detect attacks. Currently, blockchain cybersecurity attacks are predominantly 
+            handled reactively, often resulting in destructive techniques such as hard forks. As the importance of on-chain data 
+            intensifies and the value stored in smart contracts and digital wallets increases, the protection of blockchain networks 
+            becomes of greater importance. This network and blockchain activity monitoring research would be designed to create a labeled 
+            dataset of information/traffic on an HPC blockchain network. The dataset(s) created by this project could be used to explore 
+            the collaboration between AI/ML network monitoring and blockchain network security.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">ChainWatch</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our team has deployed a private Ethereum blockchain network which is being hosted on computing instances 
+            at the San Diego Supercomputer Center (2). We chose to use Ethereum due to its widespread adoption, 
+            thus more information on it and also as there are many network monitoring resources. 
+            Creating a private network means that only nodes we approve will be allowed to join the network, 
+            as we are starting all the nodes ourselves approving which nodes may join will be very trivial.
+          </p>
+          <p>
+            We are spinning up and connecting Ethereum nodes to our private Ethereum blockchain using Docker and Go Ethereum (geth) (3). 
+            Geth is one of the three original implementations of the Ethereum protocol and allows rapid creation of Ethereum nodes to 
+            interact with an ethereum blockchain. Docker is a tool to run an application in an isolated environment (4). 
+            We are using Docker to isolate and scale deployment of nodes to simulate a real world environment. 
+            There are many tools for monitoring the network information of docker containers that make Docker an optimal tool for the ChainWatch project. 
+          </p>
+          <p>
+            Eth-netstats, along with Docker stats CLI are being used to monitor the activity of the nodes and collect a dataset of network activity 
+            labeled with specific events and types of interactions (5). Eth-netstats uses the nodes Json-rpc server to interact and monitor 
+            individual nodes. Eth-netstats is able to monitor and record hash rates, last block mined, average block time and other data points. 
+            See figure 1 for Eth-netstats GUI. The Docker stats CLI command is used to stream a container's runtime metrics including network IO and memory usage. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Architecture. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Architecture</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Blockchain Network Simulation and Data Collection</b>
+            <ul>
+              <li>
+                Ethereum Network Running on SDSC Computing Instance using Docker
+              </li>
+              <li>
+                Deploying Simple ERC-20 Smart Contract to network
+              </li>
+              <li>
+                Automated transactions among accounts on network
+              </li>
+              <li>
+                Can simulate different levels of traffic
+              </li>
+              <li>
+                Network setup is completely automated
+              </li>
+              <li>
+                Collecting transaction data, docker data (hardware data) and node data (blockchain data)
+                <ul>
+                  <li>
+                    Collection was split up into two distinct categories: heavy traffic (1000 tx/minute), and light traffic (1 tx/minute)
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </p>
+          <br>
+          <center>
+            <img src="static/images/figures/architecture.png" alt="ChainWatch Architecture." width="90%">
+          </center>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Architecture. -->
+
+
+
+  </div>
+</section>
+
+<center>
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td><embed type="text/html" src="static/images/mem_usage.html" width="500" height="500"></td>
+        <td><embed type="text/html" src="static/images/net_input.html" width="500" height="500"></td>
+        <td><embed type="text/html" src="static/images/block_input.html" width="500" height="500"></td>
+    </tr>
+  </table>
+</center>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Analysis. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Analysis</h2>
+        <div class="content has-text-justified">
+          <p>
+            <ul>
+              <li>
+                Merge light and heavy transaction logs and information about the nodes and network
+                <ul>
+                  <li>
+                    Remove identifying information (timestamps, blockHash, transactionHash, etc.)
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Visualize node information in context with transaction types
+                <ul>
+                  <li>
+                    i.e. memory usage, net input/output, CPU usage
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Build machine learning model to classify between heavy and light transaction based on node usages
+                <ul>
+                  <li>
+                    Supervised classification (Random Forest, Logistic Regression, Nearest Neighbors, etc.)
+                  </li>
+                  <li>
+                    Unsupervised — Clustering (KMeans, hierarchical: agglomerative/divisive)
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </p>
+          <center>
+            <img src="static/images/figures/random_forest.png" alt="Random Forest." width="90%">
+          </center>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Discussion. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Summary</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Improving the security and performance of blockchain networks is of increasing 
+            importance as blockchain technology advances and widens in adoption. 
+            Chainwatch uses the simulation of real world blockchain networks which will allow 
+            us to collect data in association with different events which can happen on a blockchain network. 
+            Aggregating pre-validated off-chain data associated with specific blockchain network activity, 
+            will offer insight and solutions into ways in which blockchain networks can improve their security and performance.
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Discussion. -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">References</h2>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li>
+              <a href="research.vmware.com/publications/sbft-a-scalable-decentralized-trust-infrastructure-for-blockchains">“SBFT: a Scalable Decentralized Trust Infrastructure for Blockchains.” VMware Research</a>
+            </li>
+            <li>
+              <a href="ethereum.gitbooks.io/frontier-guide/ethereum.html">Ethereum. “Ethereum Frontier Guide.” What Is Ethereum? | Ethereum Frontier Guide</a>
+            </li>
+            <li>
+              <a href="ethereum.gitbooks.io/frontier-guide/getting_a_client.html">Ethereum. “Ethereum Frontier Guide.” Installing and Running a Node | Ethereum Frontier Guide</a>
+            </li>
+            <li>
+              <a href="docs.docker.com/get-started/overview/.">“Docker Overview.” Docker Documentation</a>
+            </li>
+            <li>
+              <a href="github.com/cubedro/eth-netstats">Cubedro. “Cubedro/Eth-Netstats.”</a>
+            </li>
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{chainwatch
+  author    = {Short, James, Clanton, Matthew, Gujarathi, Mihir, Qian, Samson},
+  title     = {ChainWatch: Blockchain Network Monitoring and Analysis},
+  journal   = {SDSC},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <!--
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+          <br>
+            (Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> made by the amazing <a href="https://keunhong.com/">Keunhong Park</a>.
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
