@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ChainWatch">
+  <meta name="keywords" content="blockchain, crypto">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChainWatch</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/chainwatch_logo.jpg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- Stylesheets -->
+	<link rel='stylesheet' href='lib/bootstrap.min.css'>
+	<link href='lib/jsoneditor.min.css' rel='stylesheet' type='text/css'>
+	<link rel='stylesheet' href='lib/codemirror/lint.css'>
+	<link rel='stylesheet' href='lib/codemirror/codemirror.css'>
+	<link rel='stylesheet' href='lib/codemirror/material-darker.css'>
+	<link rel='stylesheet' href='style.min.css'>
+
+	<!-- Scripts -->
+	<script type='text/javascript' src='lib/vis-network.min.js'></script>
+	<script src='lib/jsoneditor.min.js'></script>
+	<script src='lib/lz-string.min.js'></script>
+	<script src='lib/codemirror/codemirror.js'></script>
+	<script src='lib/codemirror/formatting.js'></script>
+	<script src='lib/codemirror/javascript.js'></script>
+	<script src='lib/codemirror/jshint.js'></script>
+	<script src='lib/codemirror/lint.js'></script>
+	<script src='lib/codemirror/javascript-lint.js'></script>
+	<script src='lib/NoSleep.min.js'></script>
+
+	<!-- Dynamically Updating Inline Styles -->
+	<style id='miner-colors-selector'></style>
+
+  <style>
+    body {
+        background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="index.html">
+        <span class="icon">
+            <i class="fas fa-home"></i>
+        </span>
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Chainwatch
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="simulation.html">
+              Simulation
+            </a>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </nav>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">ChainWatch Simulation</h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://www.sdsc.edu/News%20Items/PR20231114_sparkai.html">SPARK AI - BlockLAB</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class='container bg-light rounded pb-3'>
+      <div class='jumbotron p-3 mb-3'>
+        <div class='row'>
+          <div class='col-md-12 mb-3'>
+            <div id='navbar' class='btn-group fillx user-select-none'>
+              <div class='btn-group w-100'>
+  
+                <!-- File Options Dropdown -->
+                <button type='button' class='btn btn-dark dropdown-toggle dropdown-toggle-split rounded-0'
+                  data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+                  onclick='DOM_clearOptionMsg()'>
+                  <span class='sr-only'>Toggle Dropdown</span>
+                  <span id='fileOptionMsg' class='badge badge-light'></span>
+                  File
+                </button>
+                <div class='dropdown-menu'>
+                  <a class='dropdown-item' onclick='loadFromFile()'>Open network file<span
+                      class='badge badge-secondary float-right'
+                      style='margin-top:3px'>CTRL+O</span></a>
+                  <a class='dropdown-item' onclick='saveToFile(true)'>Save network file <span
+                      class='badge badge-secondary float-right'
+                      style='margin-top:3px'>CTRL+S</span></a>
+                  <a class='dropdown-item' onclick='saveToFile(false)'>Save network file
+                    (uncompressed)</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' onclick='saveLocalStorage()'>Save network to LocalStorage</a>
+                  <a class='dropdown-item' onclick='loadLocalStorage()'>Load network from LocalStorage</a>
+                  <a class='dropdown-item' onclick='deleteLocalStorage()'>Delete network from
+                    LocalStorage</a>
+                  <a class='dropdown-item' onclick='clearAllLocalStorage()'>Clear LocalStorage</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' data-toggle='modal' data-target='#copyToClipboardModal'
+                    onclick='DOM_saveToClipboard()'>Copy network to clipboard</a>
+                  <a class='dropdown-item' data-toggle='modal' data-target='#loadFromClipboardModal'
+                    onclick='DOM_loadFromClipboard()'>Load network from clipboard</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' href='https://github.com/simewu/blockchain-simulator'
+                    target='_blank'>View on GitHub</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' data-toggle='modal' data-target='#aboutModal'
+                    onclick='loadAboutModal()'>About</a>
+                </div>
+              </div>
+              <div class='btn-group w-100' style='max-height:35px;cursor:pointer'>
+  
+                <!-- Network Options Dropdown -->
+                <button type='button' class='btn btn-dark dropdown-toggle dropdown-toggle-split rounded-0'
+                  data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+                  onclick='DOM_clearOptionMsg()'>
+                  <span class='sr-only'>Toggle Dropdown</span>
+                  <span id='networkOptionMsg' class='badge badge-light'></span>
+                  Network
+                </button>
+                <div class='dropdown-menu'>
+                  <a class='dropdown-item' data-toggle='modal' data-target='#addMinerModal'
+                    onclick='addMinerBtnClicked()'><b>Add/edit miner</b><span
+                      class="badge badge-secondary float-right" style="margin-top:3px">E</span></a>
+                  <a class='dropdown-item' onclick='DOM_duplicateMiner()'><span
+                      id='duplicateMinerBtn'>Duplicate miner</span><span
+                      class="badge badge-secondary float-right" style="margin-top:3px">D</span></a>
+                  <a class='dropdown-item' onclick='DOM_removeMiner()'><span id='removeMinerBtn'>Remove
+                      miner</span><span class="badge badge-secondary float-right"
+                      style="margin-top:3px">Del</span></a>
+                  <a class='dropdown-item'
+                    onclick='if(confirm("You are about to remove all miners.")) DOM_removeAllMiners()'>Remove
+                    all miners<span class="badge badge-secondary float-right"
+                      style="margin-top:3px">Shift+Del</span></a>
+                  <a class='dropdown-item' onclick='DOM_sortMiners()'>Sort miners</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' onclick='DOM_globalSetPower()'>Globally set power
+                    (hashes/s)</a>
+                  <a class='dropdown-item' onclick='DOM_globalSetLatency()'>Globally set latency (ms)</a>
+                  <a class='dropdown-item' onclick='DOM_globalSetDownloadMBPS()'>Globally set downlink
+                    bandwidth (MBps)</a>
+                  <a class='dropdown-item' onclick='DOM_globalSetUploadMBPS()'>Globally set uplink
+                    bandwidth (MBps)</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' onclick='DOM_toggleLoggingNetworkData()'
+                    id='DOM_item_toggleLoggingNetworkData'>Enable logging network<br>data within each
+                    miner</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' onclick='DOM_clearBlockchain()'>Clear all blockchains</a>
+                  <a class='dropdown-item' onclick='DOM_setNetworkDifficulty()'>Set network difficulty</a>
+                  <a class='dropdown-item' onclick='DOM_setBlockSizes()'>Set block sizes</a>
+                  <a class='dropdown-item' onclick='toggleSha256()' id='useSHA256Btn'>Use secure SHA-256
+                    (slower)</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' data-toggle='modal' data-target='#viewNetworkModal'
+                    onclick='DOM_viewNetworkJSON()'>View full network structure</a>
+                </div>
+              </div>
+              <div class='btn-group w-100' style='max-height:35px;cursor:pointer'>
+  
+                <!-- Topology Options Dropdown -->
+                <button type='button' class='btn btn-dark dropdown-toggle dropdown-toggle-split rounded-0'
+                  data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+                  onclick='DOM_clearOptionMsg()'>
+                  <span class='sr-only'>Toggle Dropdown</span>
+                  <span id='topologyOptionMsg' class='badge badge-light'></span>
+                  Topology
+                </button>
+                <div class='dropdown-menu'>
+                  <a class='dropdown-item' data-toggle='modal'
+                    data-target='#generateTopologyModal'><b>Generate a topology</b></a>
+                  <a class='dropdown-item' onclick='duplicateTopology()'>Duplicate current topology</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' onclick='toggleBidirectionalConnections()'>Toggle
+                    bidirectionality <span class="badge badge-secondary float-right"
+                      style="margin-top:3px">+</span></a>
+                  <a class='dropdown-item' onclick='disconnectNonBidirectionalPeers()'>Remove partial
+                    edges <span class="badge badge-secondary float-right"
+                      style="margin-top:3px">&#8211;</span></a>
+                  <a class='dropdown-item' onclick='fullyConnectPeers()'>Connect all nodes</a>
+                  <a class='dropdown-item' onclick='fullyDisconnectPeers()'>Disconnect all nodes</a>
+                </div>
+              </div>
+  
+              <div class='btn-group w-100' style='max-height:35px;cursor:pointer'>
+  
+                <!-- Display Options Dropdown -->
+                <button type='button' class='btn btn-dark dropdown-toggle dropdown-toggle-split rounded-0'
+                  data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+                  onclick='DOM_clearOptionMsg()'>
+                  <span class='sr-only'>Toggle Dropdown</span>
+                  <span id='displayOptionMsg' class='badge badge-light'></span>
+                  Display
+                </button>
+                <div class='dropdown-menu'>
+                  <a class='dropdown-item' onclick='toggleVisualizations()'>Toggle visualizations</a>
+                  <a class='dropdown-item' onclick='DOM_toggleMinerStatsTable()'>Toggle miner stats
+                    table</a>
+                  <a class='dropdown-item' onclick='DOM_toggleSamplerForm()'>Toggle sampler</a>
+                  <div class='dropdown-divider' id='vis_btn_delimeter'></div>
+                  <a class='dropdown-item' id='vis_refresh_btn' onclick='DOM_refreshVisualizer()'>Refresh
+                    visualizer<span class="badge badge-secondary float-right"
+                      style="margin-top:3px">R</span></a>
+                  <a class='dropdown-item' onclick='DOM_togglePhysics()'><span
+                      id='vis_physics_btn'>Disable visualizer physics</span><span
+                      class="badge badge-secondary float-right" style="margin-top:3px">P</span></a>
+                  <a class='dropdown-item' id='vis_line_length_btn' onclick='DOM_setLineLengths()'>Set
+                    line lengths</a>
+                  <div class='dropdown-divider'></div>
+                  <a class='dropdown-item' onclick='formatSamplerCode()'>Format all sampler code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class='row'>
+          <div class='col-md-4'>
+            <div class='row px-3' style='height:calc(100% - 35px)'>
+              <select id='minerList' onclick='DOM_selectedMiner()' onchange='DOM_selectedMiner()' size='6'
+                class='form-control fillx filly'>
+              </select>
+            </div>
+  
+            <div class='btn-group fillx' style='max-height:35px;cursor:pointer;padding:0 1px'>
+              <button id='toggleMiningBtn' onclick='DOM_toggleAllMining()' type='button'
+                class='btn btn-dark rounded-0' style='width:100%'>Start All Miners</button>
+  
+              <!-- Miner Options -->
+              <button type='button' class='btn btn-dark rounded-0 dropdown-toggle dropdown-toggle-split'
+                data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+                onclick='DOM_clearOptionMsg()'>
+                <span class='sr-only'>Toggle Dropdown</span>
+              </button>
+              <div class='dropdown-menu'>
+                <a id='toggleMinerMiningBtn' class='dropdown-item' onclick='DOM_toggleMining()'>Toggle
+                  mining for miner</a>
+                <a id='clearMinerBlockchainBtn' class='dropdown-item'
+                  onclick='DOM_clearMinerBlockchain()'>Clear blockchain for miner</a>
+  
+                <div class='dropdown-divider'></div>
+                <a id='stopBlocksInFlightBtn' class='dropdown-item'
+                  onclick='DOM_toggleStoppingBlocksInFlight()'>Stop blocks in flight<br>after stopping all
+                  miners</a>
+              </div>
+            </div>
+          </div>
+          <div class='col-md-8'>
+            <div class='row pr-3'>
+              <div id='jsoneditor'></div>
+              <span id='editMinerBadge' class='ml-auto badge badge-secondary'></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-12'>
+          <span id='canvasVisualizerSpan'></span>
+          <div id='networkVisualizer'></div>
+        </div>
+      </div>
+      <div class='row'>
+        <div id='canvasVisualizerContainer' class='col-md-12'>
+          <div id='canvasVisualizerCodeContainer' class='col-md-12 m-0'>
+            <label id='canvasVisualizerCodeLabel' for='canvasVisualizerCode'>Time Plot:</label>
+            <input id='canvasVisualizerCode' list='canvasVisualizerCodeList' type='text'
+              onchange='saveSamplerSettings()' class='col-sm-6 custom-select custom-select-sm'>
+            <datalist id='canvasVisualizerCodeList'>
+              <option value='miner.lastAcceptedBlock'>Visualize most recent block</option>
+              <option value='miner.lastAcceptedBlock.balances[miner.ID] * 700'>Visualize account balance
+              </option>
+              <option value='miner.lastAcceptedBlock.height * 700'>Visualize block height</option>
+              <option value='miner.networkBuffer.buffer'>Visualize network buffers</option>
+              <option value='miner.blockchain_blockDelay[miner.blockchain_blockDelay.length - 1] * 10'>
+                Visualize block propagation time (requires toggling network logging)</option>
+              <option value='Math.random()'>Random noise</option>
+            </datalist>
+          </div>
+          <canvas id='canvasVisualizer' onclick='canvasVisualizerClicked(event)' class='w-100'
+            height='9'></canvas>
+        </div>
+      </div>
+      <!-- Miner Stats Table
+      <div id='minerStatsDiv' class='row'>
+        <div class='col-md-12'>
+          <small>
+            <table id='minerStatsTable' class='table table-dark table-hover table-responsive table-sm mb-0'>
+            </table>
+          </small>
+        </div>
+      </div>
+      -->
+      <!---->
+      <div id='samplerDiv' class='row' style="display: none;">
+        <div class='col-md-12'>
+          <div class='card text-white bg-dark rounded-0 px-2'>
+            <div class='card-header'>
+              <div class='form-group row'>
+                <label for='codeBeforeSampling' class='col-sm-3 col-form-label'>Run before sampling</label>
+                <div class='col-sm-9 p-0'>
+                  <textarea id='codeBeforeSampling'
+                    class='form-control text-white bg-dark border border-secondary' rows='1'></textarea>
+                </div>
+              </div>
+              <div class='form-group row'>
+                <label for='codeBetweenSamples' class='col-sm-3 col-form-label'>Run between samples</label>
+                <div class='col-sm-9 p-0'>
+                  <textarea id='codeBetweenSamples'
+                    class='form-control text-white bg-dark border border-secondary' rows='2'></textarea>
+                </div>
+              </div>
+              <div class='form-group row'>
+                <label for='codeAfterSampling' class='col-sm-3 col-form-label'>Run after sampling</label>
+                <div class='col-sm-9 p-0'>
+                  <textarea id='codeAfterSampling'
+                    class='form-control text-white bg-dark border border-secondary' rows='1'></textarea>
+                </div>
+              </div>
+              <div class='form-group row'>
+                <label class='col-sm-3 col-form-label'></label>
+                <div class='col-sm-9 p-0'>
+                  <label class='btn btn-secondary'>
+                    <input id='logSamplesCheckbox' type='checkbox' onchange='saveSamplerSettings()'> Log
+                    samples to file
+                  </label>
+                  <label class='btn btn-secondary'>
+                    <input id='resetBlockchainAfterEachSampleCheckbox' type='checkbox'
+                      onchange='saveSamplerSettings()' checked> Reset blockchain after each sample
+                  </label>
+                  <label class='btn btn-secondary'>
+                    <input id='updateTableAfterEachSampleCheckbox' type='checkbox'
+                      onchange='saveSamplerSettings()' checked> Update table
+                  </label>
+                </div>
+              </div>
+              <div id='logColumns' class='form-group row'>
+                <label class='col-sm-3 col-form-label'>Log columns (multiselect)</label>
+                <div class='col-sm-9 p-0'>
+                  <select id='logColumnsList' multiple='multiple' onchange='saveSamplerSettings()'
+                    class='form-control' size='8'>
+                  </select>
+                  <label class='btn btn-dark'>
+                    <input id='logAveragesOnlyCheckbox' type='checkbox'
+                      onchange='saveSamplerSettings()'> Log averages only, rather than per-node
+                  </label>
+                </div>
+              </div>
+              <div class='form-group row mb-0'>
+                <button id='toggleSamplingBtn' class='btn btn-primary fillx border border-dark'
+                  onclick='toggleSampling()'>Begin Sampling</button>
+              </div>
+            </div>
+  
+            <div class='col-md-12 p-2'>
+              <small>
+                <table id='sampleTable' class='table table-dark table-hover table-responsive table-sm mb-2'>
+                </table>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Modals -->
+      <div class='modal fade' id='addMinerModal' role='dialog'>
+        <div class='modal-dialog'>
+          <!-- Modal content-->
+          <div class='modal-content'>
+            <div class='modal-header'>
+              <h4 class='modal-title'>Add or Edit a Miner</h4>
+              <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+            <form>
+              <div class='modal-body'>
+                <div class='form-group row'>
+                  <label for='addMinerName' class='col-sm-4 col-form-label'>Name</label>
+                  <div class='col-sm-8'>
+                    <input type='text' class='form-control' id='addMinerName' value=''
+                      onclick='this.select()' onblur='this.value = fixCase(this.value)' required>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label for='addMinerPower' class='col-sm-4 col-form-label'>Computing Power</label>
+                  <div class='col-sm-8'>
+                    <input type='number' class='form-control' id='addMinerPower' min='0' value='10'
+                      required>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label for='addMinerLatency' class='col-sm-4 col-form-label'>Network Latency
+                    (milliseconds)</label>
+                  <div class='col-sm-8'>
+                    <input type='number' class='form-control' id='addMinerLatency' min='0' value='10'
+                      required>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label for='addMinerDownloadMBPS' class='col-sm-4 col-form-label'>Network Downlink (MB
+                    per second)</label>
+                  <div class='col-sm-8'>
+                    <input type='number' class='form-control' id='addMinerDownloadMBPS' min='0'
+                      value='10' required>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label for='addMinerUploadMBPS' class='col-sm-4 col-form-label'>Network Uplink (MB per
+                    second)</label>
+                  <div class='col-sm-8'>
+                    <input type='number' class='form-control' id='addMinerUploadMBPS' min='0' value='10'
+                      required>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label for='multiselectAddPeers' class='col-sm-4 col-form-label'>Peers
+                    (multiselect)</label>
+                  <div class='col-sm-8'>
+                    <select id='multiselectAddPeers' multiple='multiple' class='form-control' size='6'>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class='modal-footer'>
+                <button id='addMinerSubmit' class='btn btn-default' onclick='DOM_addMiner()'
+                  data-dismiss='modal'>Add/Edit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class='modal fade' id='generateTopologyModal' role='dialog'>
+        <div class='modal-dialog'>
+          <!-- Modal content-->
+          <div class='modal-content'>
+            <div class='modal-header'>
+              <h4 class='modal-title'>Pick a Topology</h4>
+              <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+            <div class='modal-body'>
+              <!-- Support clickable areas on the image for topology selection -->
+              <img src='img/topologies.png' style='width:100%' usemap='#topologies'>
+              <map id='topologyMap' name='topologies' data-dismiss='modal' data-toggle='modal'
+                data-target='#generateTopologyModal2'>
+                <area shape='rect' coords='10, 10, 450, 506' alt='Ring'
+                  onclick='DOM_selectTopology("Ring")'>
+                <area shape='rect' coords='471, 10, 1005, 506' alt='Mesh'
+                  onclick='DOM_selectTopology("Mesh")'>
+                <area shape='rect' coords='1026, 10, 1403, 506' alt='Star'
+                  onclick='DOM_selectTopology("Star")'>
+                <area shape='rect' coords='1424, 10, 1910, 506' alt='Fully Connected'
+                  onclick='DOM_selectTopology("Fully Connected")'>
+                <area shape='rect' coords='10, 527, 740, 931' alt='Line'
+                  onclick='DOM_selectTopology("Line")'>
+                <area shape='rect' coords='761, 527, 1367, 931' alt='Tree'
+                  onclick='DOM_selectTopology("Tree")'>
+                <area shape='rect' coords='1388, 527, 1910, 931' alt='Bus'
+                  onclick='DOM_selectTopology("Bus")'>
+                <area shape='rect' coords='10, 958, 955, 1412' alt='Barabási-Albert'
+                  onclick='DOM_selectTopology("Barabási-Albert")'>
+                <area shape='rect' coords='965, 958, 1910, 1412' alt='Bitcoin'
+                  onclick='DOM_selectTopology("Bitcoin")'>
+              </map>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='modal fade' id='generateTopologyModal2' role='dialog'>
+        <div class='modal-dialog'>
+          <!-- Modal content-->
+          <div class='modal-content'>
+            <div class='modal-header'>
+              <h4 id='topologyTitle' class='modal-title'>Topology</h4>
+              <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+            <form>
+              <div class='modal-body'>
+                <div id='topologyjsoneditor'></div>
+              </div>
+              <div class='modal-footer'>
+                <button class='btn btn-default' onclick='DOM_generateTopology()'
+                  data-dismiss='modal'>Generate</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class='modal fade' id='viewNetworkModal' role='dialog'>
+        <div class='modal-dialog'>
+          <!-- Modal content-->
+          <div class='modal-content'>
+            <div class='modal-header'>
+              <h4 id='topologyTitle' class='modal-title'>View Network</h4>
+              <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+            <div class='modal-body'>
+              <div id='networkjsoneditor'></div>
+              <span id='editNetworkBadge' class='ml-auto badge badge-secondary'></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- jQuery first, imageMapResizer, then Popper.js, then Bootstrap JS -->
+    <script src='lib/jquery.slim.min.js'></script>
+    <script src='lib/imageMapResizer.min.js'></script>
+    <script src='lib/popper.min.js'></script>
+    <script src='lib/bootstrap.min.js'></script>
+</body>
+
+<script type='text/javascript' src="script.js"></script>
+</html>
