@@ -39,9 +39,47 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <!--Password Protect-->
+  <style>
+    /* Hide main content by default */
+    #main-content {
+        display: none;
+    }
+    /* Center the password prompt */
+    #password-prompt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+  </style>
+  <script>
+    function checkPassword() {
+        var password = document.getElementById("password").value;
+        if (password === "blocklab") {
+            // Hide the password prompt and show the main content
+            document.getElementById("password-prompt").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        } else {
+            alert("Incorrect password. Try again.");
+        }
+    }
+  </script>
 </head>
 <body>
 
+  <!-- Password Prompt Section -->
+  <div id="password-prompt">
+    <h2>Enter Password to Access Chainwatch Simulation</h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Submit</button>
+  </div>
+
+  <!--Main Contennt Section-->
+  <div id="main-content">
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -522,5 +560,6 @@
   </div>
 </footer>
 -->
+</div>
 </body>
 </html>
